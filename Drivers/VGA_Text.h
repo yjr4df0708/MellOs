@@ -13,6 +13,7 @@ void display_tty_line(char* tty, int line);
 void clear_tty(int col, char *tty);
 
 void kprint(const char* s);
+void kprintVA(int len, ...);
 void kprintChar(const char c, bool caps);
 void MoveCursorLR(int i);
 void MoveCursorUD(int i);

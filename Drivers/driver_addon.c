@@ -31,19 +31,19 @@ void time(const char* s){
     unsigned char yvalue = inb(0x71);
     yvalue = ((yvalue / 16) * 10) + (yvalue & 0xf);
     kprint("CMOS time:  ");
-    kprintInt(hvalue);
+    kprintInt(hvalue, 10);
     kprint(":");
-    kprintInt(mvalue);
+    kprintInt(mvalue, 10);
     kprint(":");
-    kprintInt(svalue);
+    kprintInt(svalue, 10);
     kprint("   ");
-    kprintInt(movalue);
+    kprintInt(movalue, 10);
     kprint("/");
-    kprintInt(dvalue);
+    kprintInt(dvalue, 10);
     kprint("/");
-    kprintInt(yvalue);
+    kprintInt(yvalue, 10);
 }
 void boottime(){
 	kprint("Uptime:");
-	kprintInt(seconds);
+	kprintInt(seconds, 10);
 }

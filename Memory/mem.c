@@ -10,6 +10,7 @@
 
 #include "mem.h"
 #define FREE_MEM 0x10000;
+//that semicolon seems like a bug that happens to not be a problem because this is only ever used one way
 
 void* memset(void* dest, unsigned char val, int count){ 
 	unsigned char* destC = (unsigned char*)dest;
@@ -17,6 +18,11 @@ void* memset(void* dest, unsigned char val, int count){
 	for (i = 0; i < count; i++)
 		destC[i] = val;
 	return dest;
+}
+
+mem_t upper_memget (){
+	mem_t* mem = (mem_t*)0x5100;
+	return *mem;
 }
 
 /* Copy blocks of memory */
@@ -64,11 +70,6 @@ int getFreeMem(){
 
 mem_t memget(){
     mem_t* mem = (mem_t*)0x5000;
-    return *mem;
-}
-
-mem_t upper_memget (){
-    mem_t* mem = (mem_t*)0x5100;
     return *mem;
 }
 

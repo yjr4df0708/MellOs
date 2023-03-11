@@ -7,81 +7,26 @@
 * 							     *
 ***********************************************************/
 
-#include <string.h>
+#include "string.h"
 #include "../Drivers/VGA_Text.h"
 
-char toStringRes[128];
-
-const char* toString(int n, int base) {
-    
-	char* buffer = toStringRes;
-	
-	int m = n;
-	int i = 0;
-    
-    if(n < 0){                 // Negative integers
-        m = -n;
-    }
-	
-    while(m != 0){
-        //kprint("banana");
-		buffer[i] = (char)((m % base)+ (m % base > 9 ? 55 : 48));
-		m = m / base;
-		i++;
-	}
-    
-    if(n < 0){
-        buffer[i] = '-';
-        i++;
-    }
-    
-    if(n == 0){
-        buffer[i] = '0';
-        i++;
-    }
-	
-	buffer[i] = '\0';
-	char revBuf[128];
-	//asm volatile("1: jmp 1b");
-    
-	return reverse(buffer, revBuf, i-1);
+char *toString(int n, char *buf, int base){
+	char buf2[128];
+	int m=n<0?-n:n;
+	int i=0;
+	do{
+		buf2[i++]=(char)(m%base+(m%base>9?55:'0'));
+		m/=base;
+	}while(m);
+	if(n<0)
+		buf2[i++]='-';
+	return reverse(buf2, buf, i);
 }
 
-const char* kprintInt(int n) {
-
-	char* buffer = toStringRes;
-	int base = 10;
-	int m = n;
-	int i = 0;
-    
-    if(n < 0){                 // Negative integers
-        m = -n;
-    }
-	
-    while(m != 0){
-		buffer[i] = (char)((m % base)+ (m % base > 9 ? 55 : 48));
-		m = m / base;
-		i++;
-	}
-    
-    if(n < 0){
-        buffer[i] = '-';
-        i++;
-    }
-    
-    if(n == 0){
-        buffer[i] = '0';
-        i++;
-    }
-	
-	buffer[i] = '\0';
-	char revBuf[128];
-	//asm volatile("1: jmp 1b");
-	if (n<10){
-	    kprint("0");
-	    kprint(reverse(buffer, revBuf, i-1));
-	} else {
-	kprint(reverse(buffer, revBuf, i-1));}
+void kprintInt(int n, int base){
+	char buffer[128];
+	kprint(toString(n, buffer, base));
+	return;
 }	
 
 int oct2bin(unsigned char *str, int size) {
