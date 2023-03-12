@@ -9,5 +9,5 @@ FDEF(hcf){
 
 FDEF(test){
 	kprint("log10(607)=");
-	kprintInt(log2(607)/log2(10)+1, 10);
+	kprintInt(log(607, 10), 10);
 }
