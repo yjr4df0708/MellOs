@@ -11,3 +11,7 @@ double log2(double x){
 	);
 	return res;
 }
+
+double log(double x, double b){
+	return log2(x)/log2(b);
+}

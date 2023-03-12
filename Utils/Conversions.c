@@ -7,20 +7,26 @@
 * 							     *
 ***********************************************************/
 
-#include "string.h"
+#include "../Utils/string.h"
 #include "../Drivers/VGA_Text.h"
+#include "../Utils/Math.h"
 
 char *toString(int n, char *buf, int base){
-	char buf2[128];
 	int m=n<0?-n:n;
 	int i=0;
+	unsigned int len=log(m, base)+1;//why does this need to be unsigned
+	if(!len)
+		len=1;
+	if(n<0){
+		len++;
+		buf[0]='-';
+	}
 	do{
-		buf2[i++]=(char)(m%base+(m%base>9?55:'0'));
+		buf[len-1-i++]=(char)(m%base+(m%base>9?55:'0'));
 		m/=base;
 	}while(m);
-	if(n<0)
-		buf2[i++]='-';
-	return reverse(buf2, buf, i);
+	buf[len]=0;
+	return buf;
 }
 
 void kprintInt(int n, int base){

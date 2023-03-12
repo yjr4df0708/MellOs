@@ -18,6 +18,7 @@ FHDR(floppy);
 
 // misc.c
 FHDR(hcf);
+FHDR(test);
 
 // driver_addon.c
 FHDR(time);
