@@ -11,7 +11,6 @@
 #include "../Drivers/VGA_Text.h"
 #include "../Utils/Conversions.h"
 #include "../Utils/string.h"
-#include "../Memory/shmalloc.h"
 #include "../Memory/mem.h"
 #include "../Memory/cmos_memsize.h"
 #include "../Memory/Paging/paging.h"
@@ -92,7 +91,6 @@ extern  void main(){
 	asm volatile ("sti");
 	timer_install();
 	initializeMem();
-	shmalloc_install();
 
 
 	clear_tty(DEFAULT_COLOR, ker_tty);
