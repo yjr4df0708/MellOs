@@ -9,7 +9,6 @@
 #endif
 
 char *format(char *buf, char *fmt, ...){
-	//to all who see this, I encourage you to attempt to improve this
 	char digl[16]="0123456789abcdef";
 	char digh[16]="0123456789ABCDEF";
 	va_list l;
@@ -157,7 +156,7 @@ char *format(char *buf, char *fmt, ...){
 						default:goto exit;
 					}
 				}
-				bool v0=v!=0;//in this case there is a difference
+				bool v0=v!=0;//in this case there is a difference between v and v!=0
 				int p=0;
 				int len=precision;
 				if(v)
@@ -178,7 +177,7 @@ char *format(char *buf, char *fmt, ...){
 				else
 					o=0;
 				if(decor&&v0){
-					buf2[o]='0';//octal preceding zeroes without the "o" is dumb, but it's in the specifications
+					buf2[o]='0';//octal preceding zeroes without the "o" is dumb, but it's in the specifications that I'm using
 					if(base==16)
 						buf2[o+1]=low_8(type);
 				}
@@ -187,7 +186,7 @@ char *format(char *buf, char *fmt, ...){
 				char buf3[]="doubles are currently not supported";
 				for(int i=0;i<=strLen(buf3);i++)
 					buf2[i]=buf3[i];
-				//todo: doubles
+				//todo (maybe): doubles
 				//fun
 			}*/else{
 				switch(low_8(type)){
@@ -212,7 +211,8 @@ char *format(char *buf, char *fmt, ...){
 							case 'h'+1:*va_arg(l, uint8_t*)=oi;break;
 							case 'h':*va_arg(l, uint16_t*)=oi;break;
 						}
-						buf2[0]=0;
+						buf2[0]=0;//that thing below is how I end a multiline comment without starting a new one or creating a syntax error
+								  //amazingly it actually works
 						break;//*/
 				}
 			}
