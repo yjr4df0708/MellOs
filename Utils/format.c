@@ -122,7 +122,7 @@ char *format(char *buf, char *fmt, ...){
 				width=va_arg(l, unsigned int);
 			if(settings.precision)//precision cannot
 				precision=va_arg(l, unsigned int);
-			char buf2[]={0};
+			char buf2[FORMAT_BUFSIZE]={0};
 			if(is_c_in_s(low_8(type), "iuoxX")){
 				int base=10;
 				uintmax_t v;
