@@ -10,6 +10,7 @@
 #include "../Utils/string.h"
 #include "../Drivers/VGA_Text.h"
 #include "../Utils/Math.h"
+#include "../Utils/Typedefs.h"
 
 char *toString(int n, char *buf, int base){
 	int m=n<0?-n:n;

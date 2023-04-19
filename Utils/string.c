@@ -9,7 +9,11 @@
 
 #include "../Memory/mem.h"
 #include "../Drivers/VGA_Text.h"
-#include "../Utils/Varargs.h"
+#include "../Utils/Typedefs.h"
+#include "../Utils/string.h"
+
+//not a dependency, just fits better to this file but it's large enough for its own
+#include "../Utils/format.h"
 
 char *reverse(char *str, char *buffer, int len){
 	int i=0;
@@ -25,34 +29,34 @@ int strLen(const char* s){
 	return res;
 }
 
-int is_c_alpha_lower(char c){
+bool is_c_alpha_lower(char c){
 	return c<='z'&&c>='a';
 }
 
-int is_c_alpha_upper(char c){
+bool is_c_alpha_upper(char c){
 	return c<='Z'&&c>='A';
 }
 
-int is_c_alpha(char c){
+bool is_c_alpha(char c){
 	return is_c_alpha_lower(c)||is_c_alpha_upper(c);
 }
 
-int is_c_numeric(char c){
+bool is_c_numeric(char c){
 	return c<='9'&&c>='0';
 }
 
-int is_c_alnumeric(char c){
+bool is_c_alnumeric(char c){
 	return is_c_alpha(c)||is_c_numeric(c);
 }
 
-int is_c_in_s(char c, char *s){
+bool is_c_in_s(char c, char *s){
 	for(int i=0;s[i];i++)
 		if(s[i]==c)
 			return 1;
 	return 0;
 }
 
-int StringsEqu(const char* s, const char* t){
+bool StringsEqu(const char* s, const char* t){
 	const char* g = strLen(s) > strLen(t)? s : t;
 	
 	bool res = true;
@@ -82,7 +86,6 @@ bool StringStartsWith(const char* s, const char* t){
 	return res;
     
 }
-
 
 int strFindChar(const char* s, char c){
     int i = 0;
