@@ -28,10 +28,15 @@ _main16:
 	int 0x10
 
 	;read 50 sectors at kernel location
+	mov al, K_SIZE;macro defined in Makefile, number of sectors to load the kernel
 	mov bx, KERNEL_LOCATION
-	mov dh, 50
-	call disk_read
+	mov ch, 0x00
+	mov cl, 0x02
+	mov dh, 0x00
+	mov dl, [BOOT_DISK]
+	call disk_read;moved the args outside, so this can be used more dynamically, but still encapsulates the error handling
 
+	mov bx, K_SIZE
 	; WHATEVER IS PUT INTO BX HERE WILL BE WRITTEN INTO THE MEMSIZE VARIABLE!
 	; Can be adapted to pass any information to the kernel without storing it in memory
 	call detect_cont_memory

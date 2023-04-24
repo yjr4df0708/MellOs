@@ -1,1 +1,1 @@
-times 25600 db 0	; 50 blank sectors
+times FILL db 0	; 1 blank sector

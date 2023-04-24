@@ -36,17 +36,15 @@ prebuild:	## Prebuild instructions
 	rm -rf $(BIN)
 	mkdir $(BIN)
 
-build: boot $(ASMTAR) $(CTAR)
+build: $(ASMTAR) $(CTAR)
 	$(LD) -o $(BIN)/kernel.elf -Ttext 0x7ef0 $(LDPRIORITY) --start-group $(filter-out $(LDPRIORITY),$(shell find ./ -name "*.o" | xargs)) --end-group --oformat elf32-i386 ## Pray this works
 	$(OBJCP) -O binary $(BIN)/kernel.elf $(BIN)/kernel.bin
+	nasm Bootloader/boot.asm -f bin -o $(BIN)/boot.bin -i Bootloader -dK_SIZE=$$(($$(stat -c "%s" $(BIN)/kernel.bin)/512+1))
+	nasm Kernel/empty_end.asm -f bin -o $(BIN)/empty_end.bin -dFILL=$$((512*($$(stat -c "%s" $(BIN)/kernel.bin)/512+1)-$$(stat -c "%s" $(BIN)/kernel.bin)))
 	cat $(BIN)/boot.bin $(BIN)/kernel.bin > $(BIN)/short.bin
 	cat $(BIN)/short.bin $(BIN)/empty_end.bin > os_image.bin
 	dd if=/dev/zero of=osimage_formated.bin bs=512 count=2880 >/dev/null
 	dd if=os_image.bin of=osimage_formated.bin conv=notrunc >/dev/null
-
-boot:
-	nasm Bootloader/boot.asm -f bin -o $(BIN)/boot.bin -i Bootloader
-	nasm Kernel/empty_end.asm -f bin -o $(BIN)/empty_end.bin
 
 %.o: %.c
 	mkdir -p $(BIN)/$(shell dirname $<)

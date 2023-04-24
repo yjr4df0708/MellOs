@@ -182,13 +182,13 @@ char *format(char *buf, char *fmt, ...){
 						buf2[o+1]=low_8(type);
 				}
 				buf2[len]=0;
-			}/*else if(is_c_in_s(low_8(type), "fFeEgGaA")){
+			}else if(is_c_in_s(low_8(type), "fFeEgGaA")){
 				char buf3[]="doubles are currently not supported";
 				for(int i=0;i<=strLen(buf3);i++)
 					buf2[i]=buf3[i];
 				//todo (maybe): doubles
 				//fun
-			}*/else{
+			}else{
 				switch(low_8(type)){
 					case 'c'://normally this would handle ints, not chars, but I can't fix the type system and I can't cast chars implicitly via parameters
 						//it would also handle wide chars, but I won't because no
@@ -205,7 +205,7 @@ char *format(char *buf, char *fmt, ...){
 					case 'p':
 						format(buf2, "%#.8x", va_arg(l, uint32_t));//It's not *really* recursion
 						break;
-					/*case 'n'://really this should be unsigned, because this will never a print negative number of characters
+					case 'n'://really this should be unsigned, because this will never a print negative number of characters
 						switch(high_8(type)){//t is for ptrdiff_t, a signed type
 							case 0:case 'l':case 'j':case 'z':case 't':*va_arg(l, uint32_t*)=oi;break;
 							case 'h'+1:*va_arg(l, uint8_t*)=oi;break;
