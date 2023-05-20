@@ -1,6 +1,7 @@
 #ifndef STRING_H
 #define STRING_H
 #include "Typedefs.h"
+#include "format.h"
 char* reverse(char* str, char* buffer, int len);
 int strLen(const char* s);
 bool is_c_alpha_lower(char c);

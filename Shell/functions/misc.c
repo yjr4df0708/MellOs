@@ -1,7 +1,5 @@
 #include "../../Drivers/VGA_Text.h"
-#include "../../Utils/Conversions.h"
 #include "../../Utils/string.h"
-#include "../../Utils/Math.h"
 #define FDEF(name) void name(const char* s)
 
 FDEF(hcf){

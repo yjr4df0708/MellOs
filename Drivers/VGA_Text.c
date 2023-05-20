@@ -2,7 +2,6 @@
 #include "../Drivers/port_io.h"
 #include "../Utils/Conversions.h"
 #include "../Misc/colors.h"
-#include "../Utils/Varargs.h"
 
 /*********************
 * TEXT MODE: 0xB8000 *
@@ -138,13 +137,6 @@ void kprint(const char* s){		// Just a simple print function; prints to screen a
 	return;
 }
 
-void kprintVA(int len, ...){
-	va_list l;
-	va_start(l, len);
-	for(int i=0;i<len;i++)
-		kprint(va_arg(l, char*));
-	return;
-}
 
 void kprintCol(const char* s, int col){		//Print: with colours!
   uint8_t* charPtr = (uint8_t*)s;

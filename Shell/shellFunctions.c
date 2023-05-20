@@ -30,7 +30,7 @@ shellfunction CMDs[] = {
     CMDENTRY(&floppy,   "floppy",   "Shows list of connected floppy drives", "floppy"),
     CMDENTRY(&clear,    "clear",    "Clears the screen", "clear"),
     CMDENTRY(&hcf,      "hcf",      "Crashes your system", "hcf"),
-    CMDENTRY(&test,     "test",     "Used for debugging", "test"),
+    CMDENTRY(&test,      "test",      "Used for debugging", "test"),
     CMDENTRY(&meminfo,  "meminfo",  "Shows memory info", "meminfo"),
     CMDENTRY(&cmosmem,  "cmosmem",  "Shows CMOS memory info", "cmosmem"),
     CMDENTRY(&boottime,  "time",  "Shows time lasted since system boot", "time"),

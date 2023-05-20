@@ -8,12 +8,6 @@
 //I moved format to the end because it's too big.
 
 #include "../Memory/mem.h"
-#include "../Drivers/VGA_Text.h"
-#include "../Utils/Typedefs.h"
-#include "../Utils/string.h"
-
-//not a dependency, just fits better to this file but it's large enough for its own
-#include "../Utils/format.h"
 
 char *reverse(char *str, char *buffer, int len){
 	int i=0;
@@ -71,7 +65,7 @@ bool StringsEqu(const char* s, const char* t){
 	return res;
 }
 
-bool StringStartsWith(const char* s, const char* t){
+bool StringStartsWith(char *s, char *t){
     const char* g = t;
 	
 	bool res = true;
@@ -87,7 +81,7 @@ bool StringStartsWith(const char* s, const char* t){
     
 }
 
-int strFindChar(const char* s, char c){
+int strFindChar(char *s, char c){
     int i = 0;
 	do{
 		if(s[i] == c || i > 80){
@@ -99,10 +93,10 @@ int strFindChar(const char* s, char c){
 }
 
 
-const char* strDecapitate(const char* s, int n){            // Uses Dynamic Memory Allocation, be careful.
+char *strDecapitate(char *s, int n){            // Uses Dynamic Memory Allocation, be careful.
     int newLen = strLen(s) - n;
     if(newLen <= 0) return ""; 
-    char* t = (char*)kmalloc(sizeof(char) * (newLen + 1));
+    char* t = (char*)linear_alloc(sizeof(char) * (newLen + 1));
     for(int i = 0; i < newLen; i++)
         t[i] = s[i + n];
     return t;

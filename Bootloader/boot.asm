@@ -27,12 +27,12 @@ _main16:
 	mov al, 0x03
 	int 0x10
 
-	mov al, K_SIZE
+	;read K_SIZE sectors at kernel location
 	mov bx, KERNEL_LOCATION
+	mov al, K_SIZE
 	mov ch, 0x00
 	mov cl, 0x02
 	mov dh, 0x00
-	mov dl, [BOOT_DISK]
 	call disk_read
 
 	; WHATEVER IS PUT INTO BX HERE WILL BE WRITTEN INTO THE MEMSIZE VARIABLE!

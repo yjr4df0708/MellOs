@@ -27,22 +27,22 @@ If you make a useful change or addition, you are allowed to use the `anything_he
 
 ## Features
 ### Current
-As simple as it can get:
 
 - Simple bootloader, loads the kernel in memory and jumps to it
 - Monolithic kernel
-- Flat memory model (just the strictly necessary segmentation (data/code), paging is in the making)
-- Interrupt request handling, keyboard and timer support
-- Linear dynamic memory allocation (with some tricks not to make it too inefficient - placeholder for future decent allocation method)
 - GDT (Different from the one in the Bootloader)
+- Interrupt request handling, keyboard and timer support
+- Paging
+- Linear dynamic memory allocation (for the lower part of memory)
+- Bitmap-based dynamic memory allocation (`kmalloc`/`krealloc`/`kfree`...)
 - TTY-ish system to print to screen: allows to print to one of many canvases
 
 ### Work in progress
 - Dynamic, Modular Shell (will run executables when processes will be a thing)
 - File System
-- Paging
+- Syscalls, flat binary loading
 
 ### Future
-- Process abstraction
+- Actual processes
 
 

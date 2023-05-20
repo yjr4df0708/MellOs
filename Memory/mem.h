@@ -6,10 +6,11 @@ typedef struct {
     uint16_t upper_size;
 } mem_t;
 mem_t memget(void);
-void* memset(void* dest, unsigned char val, int count);
-mem_t upper_memget(void);
-void* kmalloc(int size);
-void memcut(int size);
+mem_t upper_memget (void);
+void* memset(void* dest, unsigned char val, size_t count);
+void memcp(unsigned char* source, unsigned char* dest, size_t count);
+void* linear_alloc(size_t size);
+void memcut(size_t size);
 void memreset();
 void memrec();
 void memunrec();

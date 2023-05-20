@@ -30,7 +30,6 @@ print_dec:
 	mov ax, bx
 	mov bx, 10
 	div bx
-
 	mov ah, 0x00
 	call print_digit
 	
